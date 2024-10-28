@@ -1,5 +1,9 @@
 require './spec/spec_helper'
 
+RSpec.configure do |config|
+  config.formatter = :documentation
+end
+
 RSpec.describe Cell do
   before(:each) do
     @cell = Cell.new("B4")
