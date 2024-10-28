@@ -64,6 +64,19 @@ RSpec.describe Board do
       expect(board.valid_placement?(submarine, ["A1", "B1"])).to be false
     end
   end
+
+  describe "place_ship" do
+    it "accurately records & depicts ship placement in cells" do
+      @board.place(cruiser, ["A1", "A2", "A3"])   
+      expect(cell_1).to eq(board.cells["A1"])
+      expect(cell_2).to eq(board.cells["A2"])
+      expect(cell_3).to eq(board.cells["A3"])
+      expect(cell_1.ship).to eq(@cruiser)
+      expect(cell_2.ship).to eq(@cruiser)
+      expect(cell_3.ship).to eq(@cruiser)
+      expect(cell_3.ship == cell_2.ship).to be true
+    end
+  end
 end
 
 
