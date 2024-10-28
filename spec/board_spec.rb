@@ -77,6 +77,13 @@ RSpec.describe Board do
       expect(cell_3.ship == cell_2.ship).to be true
     end
   end
+
+  describe "render" do
+    it "accurately depicts board rendering" do
+      expect(board.render).to eq(" 1234\n"+"A....\n"+"B....\n"+"C....\n"+"D....\n")
+      expect(board.render(true)).to eq(" 1234\n"+"ASSS.\n"+"B....\n"+"C....\n"+"D....\n")
+    end
+  end 
 end
 
 
