@@ -39,7 +39,11 @@ class Board
   def valid_placement?(ship, coordinates_array)
     if ship_length_matches_coordinates_array?(ship, coordinates_array) == true
       if consecutive_coordinates?(ship, coordinates_array) == true
-        return true
+        if overlapping_ships?(coordinates_array) == false
+          return true
+        else
+          return false
+        end
       else
         return false
       end
