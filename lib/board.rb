@@ -1,7 +1,7 @@
 class Board
 
   attr_reader :cells
-  
+
   def initialize
     @cells = {
       "A1" => Cell.new("A1"),
@@ -90,4 +90,12 @@ class Board
     end
   end
 
+  def overlapping_ships?(coordinates_array)
+    coordinates_array.each do |coordinate|
+      if @cells[coordinate].empty? == false
+        return true
+      end
+    end
+    return false
+  end
 end
