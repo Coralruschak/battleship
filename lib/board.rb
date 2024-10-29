@@ -1,11 +1,8 @@
 class Board
+  attr_reader :cells
 
   def initialize
-
-  end
-
-  def cells
-    cells = {
+    @cells = {
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
       "A3" => Cell.new("A3"),
@@ -23,8 +20,6 @@ class Board
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
     }
-
-    return cells
   end
 
   def valid_coordinate?(cell)
@@ -43,7 +38,11 @@ class Board
   def valid_placement?(ship, coordinates_array)
     if ship_length_matches_coordinates_array?(ship, coordinates_array) == true
       if consecutive_coordinates?(ship, coordinates_array) == true
-        return true
+        if overlapping_ships?(coordinates_array) == false
+          return true
+        else
+          return false
+        end
       else
         return false
       end
@@ -57,6 +56,16 @@ class Board
       return true
     else 
       return false
+    end
+  end
+
+  def determine_row_or_column(coordinates_array)
+    if coordinates_array.all?(/A/) || coordinates_array.all?(/B/) || coordinates_array.all?(/C/) || coordinates_array.all?(/D/)
+      return "row"
+    elsif coordinates_array.all?(/1/) || coordinates_array.all?(/2/) || coordinates_array.all?(/3/) || coordinates_array.all?(/4/)
+      return "column"
+    else
+      return "diagonal"
     end
   end
 
@@ -84,13 +93,20 @@ class Board
     end
   end
 
-  def determine_row_or_column(coordinates_array)
-    if coordinates_array.all?(/A/) || coordinates_array.all?(/B/) || coordinates_array.all?(/C/) || coordinates_array.all?(/D/)
-      return "row"
-    elsif coordinates_array.all?(/1/) || coordinates_array.all?(/2/) || coordinates_array.all?(/3/) || coordinates_array.all?(/4/)
-      return "column"
-    else
-      return "diagonal"
+  def overlapping_ships?(coordinates_array)
+    coordinates_array.each do |coordinate|
+      if @cells[coordinate].empty? == false
+        return true
+      end
+    end
+    return false
+  end
+
+  def place(ship, coordinates_array)
+    if valid_placement?(ship, coordinates_array) == true
+      coordinates_array.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
     end
   end
 end
