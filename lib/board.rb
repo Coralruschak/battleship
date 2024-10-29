@@ -1,5 +1,4 @@
 class Board
-
   attr_reader :cells
 
   def initialize
@@ -101,5 +100,13 @@ class Board
       end
     end
     return false
+  end
+
+  def place(ship, coordinates_array)
+    if valid_placement?(ship, coordinates_array) == true
+      coordinates_array.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
+    end
   end
 end
