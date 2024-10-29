@@ -1,11 +1,9 @@
 class Board
 
+  attr_reader :cells
+  
   def initialize
-
-  end
-
-  def cells
-    cells = {
+    @cells = {
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
       "A3" => Cell.new("A3"),
@@ -23,8 +21,6 @@ class Board
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
     }
-
-    return cells
   end
 
   def valid_coordinate?(cell)
@@ -60,6 +56,16 @@ class Board
     end
   end
 
+  def determine_row_or_column(coordinates_array)
+    if coordinates_array.all?(/A/) || coordinates_array.all?(/B/) || coordinates_array.all?(/C/) || coordinates_array.all?(/D/)
+      return "row"
+    elsif coordinates_array.all?(/1/) || coordinates_array.all?(/2/) || coordinates_array.all?(/3/) || coordinates_array.all?(/4/)
+      return "column"
+    else
+      return "diagonal"
+    end
+  end
+
   def consecutive_coordinates?(ship, coordinates_array)
     if determine_row_or_column(coordinates_array) == "row"
       possible_placement = []
@@ -84,13 +90,4 @@ class Board
     end
   end
 
-  def determine_row_or_column(coordinates_array)
-    if coordinates_array.all?(/A/) || coordinates_array.all?(/B/) || coordinates_array.all?(/C/) || coordinates_array.all?(/D/)
-      return "row"
-    elsif coordinates_array.all?(/1/) || coordinates_array.all?(/2/) || coordinates_array.all?(/3/) || coordinates_array.all?(/4/)
-      return "column"
-    else
-      return "diagonal"
-    end
-  end
 end
