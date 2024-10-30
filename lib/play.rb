@@ -15,5 +15,12 @@ class Play
     puts "Enter the squares for the Submarine (2 spaces): \n"
 
   end
+  def turn
+    
+  end
+
+  def end_game
+    
+  end
 
 end
