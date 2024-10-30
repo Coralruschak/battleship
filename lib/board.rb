@@ -109,4 +109,13 @@ class Board
       end
     end
   end
+
+  def render(show_ships = false)
+    x_axis_labels = " 1234\n"
+    row_1 = "A" + @cells["A1"].render(show_ships) + @cells["A2"].render(show_ships) + @cells["A3"].render(show_ships) + @cells["A4"].render(show_ships) + "\n"
+    row_2 = "B" + @cells["B1"].render(show_ships) + @cells["B2"].render(show_ships) + @cells["B3"].render(show_ships) + @cells["B4"].render(show_ships) + "\n"
+    row_3 = "C" + @cells["C1"].render(show_ships) + @cells["C2"].render(show_ships) + @cells["C3"].render(show_ships) + @cells["C4"].render(show_ships) + "\n"
+    row_4 = "D" + @cells["D1"].render(show_ships) + @cells["D2"].render(show_ships) + @cells["D3"].render(show_ships) + @cells["D4"].render(show_ships) + "\n"
+    return x_axis_labels + row_1 + row_2 + row_3 + row_4
+  end
 end
