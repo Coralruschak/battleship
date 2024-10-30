@@ -80,7 +80,7 @@ RSpec.describe Cell do
     end
 
     # Method parameter to be followed by *
-    it "renders 'S' when optional argument is true" do
+    it "renders 'show_ships' when optional argument is true" do
       @cell_2.place_ship(@cruiser)
       expect(@cell_2.render(true)).to eq("S")
     end
