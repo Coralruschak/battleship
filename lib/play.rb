@@ -60,6 +60,12 @@ class Play
   end
 
   def game_over
-    
+    if @player_board.all_ships_sunk == true
+      return true
+    elsif @computer_board.all_ships_sunk == true
+      return true
+    else
+      return false
+    end
   end
 end
