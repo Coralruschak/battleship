@@ -83,12 +83,11 @@ RSpec.describe Board do
 
   describe "render" do
     it "accurately depicts board rendering" do
+      @board.place(@cruiser, ["A1", "A2", "A3"])
       expect(@board.render).to eq(" 1234\n"+"A....\n"+"B....\n"+"C....\n"+"D....\n")
       expect(@board.render(true)).to eq(" 1234\n"+"ASSS.\n"+"B....\n"+"C....\n"+"D....\n")
+      puts @board.render
+      puts @board.render(true)
     end
   end 
 end
-
-
-
-
