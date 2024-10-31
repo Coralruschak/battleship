@@ -30,12 +30,12 @@ class Play
 
 
     puts "Enter the squares for the Cruiser (3 spaces):"
-    #cruiser_coordinates = gets.chomp
-    cruiser_coordinates = "A1 A2 A4"
+    cruiser_coordinates = gets.chomp
+    #cruiser_coordinates = "A1 A2 A4"
     while @player_board.valid_placement?(Ship.new("cruiser", 3), cruiser_coordinates.split(" ")) == false
       puts "Those are invalid coordinates. Please try again:"
-      #cruiser_coordinates = gets.chomp
-      cruiser_coordinates = "A1 A2 A3"
+      cruiser_coordinates = gets.chomp
+      #cruiser_coordinates = "A1 A2 A3"
       @player_board.valid_placement?(Ship.new("cruiser", 3), cruiser_coordinates.split(" "))
     end
     @player_board.place(Ship.new("cruiser", 3), cruiser_coordinates.split(" "))
@@ -43,12 +43,12 @@ class Play
 
 
     puts "Enter the squares for the Submarine (2 spaces):"
-    #submarine_coordinates = gets.chomp
-    submarine_coordinates = "B1 B2"
+    submarine_coordinates = gets.chomp
+    #submarine_coordinates = "B1 B2"
     while @player_board.valid_placement?(Ship.new("submarine", 2), submarine_coordinates.split(" ")) == false
       puts "Those are invalid coordinates. Please try again:"
-      #submarine_coordinates = gets.chomp
-      submarine_coordinates = "B1 B2"
+      submarine_coordinates = gets.chomp
+      #submarine_coordinates = "B1 B2"
       @player_board.valid_placement?(Ship.new("submarine", 2), submarine_coordinates.split(" "))
     end
     player_board.place(Ship.new("submarine", 2), submarine_coordinates.split(" "))
