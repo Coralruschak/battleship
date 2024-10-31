@@ -56,7 +56,9 @@ class Play
   end
   
   def turn
+    puts "My Board"
     puts @computer_board.render
+    puts "Your Board"
     puts @player_board.render(true)
     puts "Enter the coordinates for your shot:"
     attack = gets.chomp
@@ -79,7 +81,7 @@ class Play
       @player_board.cells[auto_attack].fired_upon?
     end
     computer_result = @player_board.fire_upon(auto_attack)
-    
+
     puts "Your shot on " + attack + " was a " + player_result
     puts "My shot on " + auto_attack + " was a " + computer_result
   end
