@@ -1,5 +1,5 @@
 class Board
-  attr_reader :cells
+  attr_reader :cells, :ships
 
   def initialize
     @cells = {
@@ -20,6 +20,7 @@ class Board
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
     }
+    @ships = []
   end
 
   def valid_coordinate?(cell)
@@ -106,6 +107,7 @@ class Board
     if valid_placement?(ship, coordinates_array) == true
       coordinates_array.each do |coordinate|
         @cells[coordinate].place_ship(ship)
+         @ships << ship
       end
     end
   end
@@ -117,5 +119,28 @@ class Board
     row_3 = "C" + @cells["C1"].render(show_ships) + @cells["C2"].render(show_ships) + @cells["C3"].render(show_ships) + @cells["C4"].render(show_ships) + "\n"
     row_4 = "D" + @cells["D1"].render(show_ships) + @cells["D2"].render(show_ships) + @cells["D3"].render(show_ships) + @cells["D4"].render(show_ships) + "\n"
     return x_axis_labels + row_1 + row_2 + row_3 + row_4
+  end
+
+  def fire_upon(attack)
+    cell = @cells[attack]
+    cell.fire_upon
+    if cell.empty? == true
+      return "miss"
+    elsif cell.ship.sunk? == true
+      return "sunk"
+    else
+      return "hit"
+    end
+  end
+
+  
+
+  def all_ships_sunk
+    @ships.each do |ship|
+      if ship.health > 0
+        return false
+      end
+    end
+    return true
   end
 end

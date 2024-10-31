@@ -88,8 +88,10 @@ class Play
 
   def game_over
     if @player_board.all_ships_sunk == true
+      puts "I won"
       return true
     elsif @computer_board.all_ships_sunk == true
+      puts "You won"
       return true
     else
       return false
