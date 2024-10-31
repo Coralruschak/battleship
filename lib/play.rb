@@ -56,18 +56,8 @@ class Play
   end
   
   def turn
-    auto_attack = @player_board.cells.keys.sample
-    #attack = "B5"
-    while @player_board.valid_coordinate?(auto_attack) == false || @player_board.cells[auto_attack].fired_upon? == true
-      auto_attack = @player_board.cells.keys.sample
-      #attack = "B1"
-      @player_board.valid_coordinate?(auto_attack)
-      @player_board.cells[auto_attack].fired_upon?
-    end
-    computer_result = @player_board.fire_upon(auto_attack)
-   
-   
-    #Player Turn
+    puts @computer_board.render
+    puts @player_board.render(true)
     puts "Enter the coordinates for your shot:"
     attack = gets.chomp
     #attack = "B5"
@@ -79,9 +69,19 @@ class Play
       @computer_board.cells[attack].fired_upon?
     end
     player_result = @computer_board.fire_upon(attack)
-    puts "My shot on " + auto_attack + " was a " + computer_result
+
+    auto_attack = @player_board.cells.keys.sample
+    #attack = "B5"
+    while @player_board.valid_coordinate?(auto_attack) == false || @player_board.cells[auto_attack].fired_upon? == true
+      auto_attack = @player_board.cells.keys.sample
+      #attack = "B1"
+      @player_board.valid_coordinate?(auto_attack)
+      @player_board.cells[auto_attack].fired_upon?
+    end
+    computer_result = @player_board.fire_upon(auto_attack)
+    
     puts "Your shot on " + attack + " was a " + player_result
- 
+    puts "My shot on " + auto_attack + " was a " + computer_result
   end
 
   def game_over
